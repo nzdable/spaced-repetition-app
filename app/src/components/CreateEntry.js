@@ -27,6 +27,7 @@ function CreateEntry({ addEntry }) {
     <div>
       <h2>Create New Entry</h2>
       <form onSubmit={handleSubmit}>
+        <p>Topic</p>
         <input
           type="text"
           placeholder="Topic"
@@ -34,6 +35,7 @@ function CreateEntry({ addEntry }) {
           onChange={(e) => setTopic(e.target.value)}
           required
         />
+        <p>Description</p>
         <input
           type="text"
           placeholder="Description"
@@ -41,12 +43,14 @@ function CreateEntry({ addEntry }) {
           onChange={(e) => setTopic(e.target.value)}
           required
         />
+        <p>AR Date</p>
         <input
           type="date"
           value={activeRecallDate}
           onChange={(e) => setactiveRecallDate(e.target.value)}
           required
         />
+        <p>Test Date</p>
         <input
           type="date"
           value={testDate}
