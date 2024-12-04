@@ -12,6 +12,7 @@ function EntryList({ entries, deleteEntry, editEntry }) {
             <p>{entry.description}</p>
             <p>{entry.activeRecallDate}</p>
             <p>{entry.testDate}</p>
+            <p>{entry.reps}</p>
             <button onClick={() => editEntry(entry)}>Edit</button>
             <button onClick={() => deleteEntry(entry.id)}>Delete</button>
           </li>
