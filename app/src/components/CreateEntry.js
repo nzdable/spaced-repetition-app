@@ -1,17 +1,25 @@
-import React, { useState } from "react";
+import React, { act, useState } from "react";
 
 function CreateEntry({ addEntry }) {
   const [topic, setTopic] = useState("");
   const [description, setDescription] = useState("");
-  const [date, setDate] = useState("");
+  const [activeRecallDate, setactiveRecallDate] = useState("");
+  const [testDate, setTestDate] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (topic && description && date) {
-      addEntry({ id: Date.now(), topic, description, date });
+    if (topic && description && activeRecallDate) {
+      addEntry({
+        id: Date.now(),
+        topic,
+        description,
+        activeRecallDate,
+        testDate,
+      });
       setTopic("");
       setDescription("");
-      setDate("");
+      setactiveRecallDate("");
+      setTestDate("");
     }
   };
 
@@ -26,16 +34,23 @@ function CreateEntry({ addEntry }) {
           onChange={(e) => setTopic(e.target.value)}
           required
         />
-        <textarea
+        <input
+          type="text"
           placeholder="Description"
-          value={description}
-          onChange={(e) => setDescription(e.target.value)}
+          value={topic}
+          onChange={(e) => setTopic(e.target.value)}
           required
         />
         <input
           type="date"
-          value={date}
-          onChange={(e) => setDate(e.target.value)}
+          value={activeRecallDate}
+          onChange={(e) => setactiveRecallDate(e.target.value)}
+          required
+        />
+        <input
+          type="date"
+          value={testDate}
+          onChange={(e) => setTestDate(e.target.value)}
           required
         />
         <button type="submit">Add Entry</button>

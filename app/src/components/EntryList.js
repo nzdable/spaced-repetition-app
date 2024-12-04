@@ -8,9 +8,10 @@ function EntryList({ entries, deleteEntry, editEntry }) {
       <ul>
         {entries.map((entry) => (
           <li key={entry.id}>
-            <h3>{entry.topic}</h3>
+            <p>{entry.topic}</p>
             <p>{entry.description}</p>
-            <p>{entry.date}</p>
+            <p>{entry.activeRecallDate}</p>
+            <p>{entry.testDate}</p>
             <button onClick={() => editEntry(entry)}>Edit</button>
             <button onClick={() => deleteEntry(entry.id)}>Delete</button>
           </li>

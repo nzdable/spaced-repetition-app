@@ -4,17 +4,21 @@ import React, { useState, useEffect } from "react";
 function EditEntry({ entry, updateEntry, cancelEdit }) {
   const [topic, setTopic] = useState(entry.topic);
   const [description, setDescription] = useState(entry.description);
-  const [date, setDate] = useState(entry.date || "");
+  const [activeRecallDate, setactiveRecallDate] = useState(
+    entry.activeRecallDate || ""
+  );
+  const [testDate, setTestDate] = useState(entry.testDate || "");
 
   useEffect(() => {
     setTopic(entry.topic);
     setDescription(entry.description);
-    setDate(entry.date || "");
+    setactiveRecallDate(entry.activeRecallDate || "");
+    setTestDate(entry.testDate);
   }, [entry]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    updateEntry({ ...entry, topic, description, date });
+    updateEntry({ ...entry, topic, description, activeRecallDate, testDate });
   };
 
   return (
@@ -34,8 +38,14 @@ function EditEntry({ entry, updateEntry, cancelEdit }) {
         />
         <input
           type="date"
-          value={date}
-          onChange={(e) => setDate(e.target.value)}
+          value={activeRecallDate}
+          onChange={(e) => setactiveRecallDate(e.target.value)}
+          required
+        />
+        <input
+          type="date"
+          value={testDate}
+          onChange={(e) => setTestDate(e.target.value)}
           required
         />
         <button type="submit">Update</button>
