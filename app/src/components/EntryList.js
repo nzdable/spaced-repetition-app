@@ -1,5 +1,5 @@
 // src/components/EntryList.js
-import React from 'react';
+import React from "react";
 
 function EntryList({ entries, deleteEntry, editEntry }) {
   return (
@@ -8,8 +8,9 @@ function EntryList({ entries, deleteEntry, editEntry }) {
       <ul>
         {entries.map((entry) => (
           <li key={entry.id}>
-            <h3>{entry.name}</h3>
+            <h3>{entry.topic}</h3>
             <p>{entry.description}</p>
+            <p>{entry.date}</p>
             <button onClick={() => editEntry(entry)}>Edit</button>
             <button onClick={() => deleteEntry(entry.id)}>Delete</button>
           </li>

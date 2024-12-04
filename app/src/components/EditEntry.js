@@ -1,18 +1,20 @@
 // src/components/EditEntry.js
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from "react";
 
 function EditEntry({ entry, updateEntry, cancelEdit }) {
-  const [name, setName] = useState(entry.name);
+  const [topic, setTopic] = useState(entry.topic);
   const [description, setDescription] = useState(entry.description);
+  const [date, setDate] = useState(entry.date || "");
 
   useEffect(() => {
-    setName(entry.name);
+    setTopic(entry.topic);
     setDescription(entry.description);
+    setDate(entry.date || "");
   }, [entry]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    updateEntry({ ...entry, name, description });
+    updateEntry({ ...entry, topic, description, date });
   };
 
   return (
@@ -21,13 +23,19 @@ function EditEntry({ entry, updateEntry, cancelEdit }) {
       <form onSubmit={handleSubmit}>
         <input
           type="text"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
+          value={topic}
+          onChange={(e) => setTopic(e.target.value)}
           required
         />
         <textarea
           value={description}
           onChange={(e) => setDescription(e.target.value)}
+          required
+        />
+        <input
+          type="date"
+          value={date}
+          onChange={(e) => setDate(e.target.value)}
           required
         />
         <button type="submit">Update</button>

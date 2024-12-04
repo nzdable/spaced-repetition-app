@@ -1,16 +1,17 @@
-
-import React, { useState } from 'react';
+import React, { useState } from "react";
 
 function CreateEntry({ addEntry }) {
-  const [name, setName] = useState('');
-  const [description, setDescription] = useState('');
+  const [topic, setTopic] = useState("");
+  const [description, setDescription] = useState("");
+  const [date, setDate] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (name && description) {
-      addEntry({ id: Date.now(), name, description });
-      setName('');
-      setDescription('');
+    if (topic && description && date) {
+      addEntry({ id: Date.now(), topic, description, date });
+      setTopic("");
+      setDescription("");
+      setDate("");
     }
   };
 
@@ -20,15 +21,21 @@ function CreateEntry({ addEntry }) {
       <form onSubmit={handleSubmit}>
         <input
           type="text"
-          placeholder="Name"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
+          placeholder="Topic"
+          value={topic}
+          onChange={(e) => setTopic(e.target.value)}
           required
         />
         <textarea
           placeholder="Description"
           value={description}
           onChange={(e) => setDescription(e.target.value)}
+          required
+        />
+        <input
+          type="date"
+          value={date}
+          onChange={(e) => setDate(e.target.value)}
           required
         />
         <button type="submit">Add Entry</button>
