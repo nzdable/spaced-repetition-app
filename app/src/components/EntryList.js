@@ -1,4 +1,3 @@
-// src/components/EntryList.js
 import React from "react";
 
 function EntryList({ entries, deleteEntry, editEntry }) {
@@ -8,11 +7,36 @@ function EntryList({ entries, deleteEntry, editEntry }) {
       <ul>
         {entries.map((entry) => (
           <li key={entry.id}>
-            <p>{entry.topic}</p>
-            <p>{entry.description}</p>
-            <p>{entry.activeRecallDate}</p>
-            <p>{entry.testDate}</p>
-            <p>{entry.reps}</p>
+            <p>
+              <strong>Topic:</strong> {entry.topic}
+            </p>
+            <p>
+              <strong>Description:</strong> {entry.description}
+            </p>
+            <p>
+              <strong>Active Recall Date:</strong> {entry.activeRecallDate}
+            </p>
+            <p>
+              <strong>Test Date:</strong> {entry.testDate}
+            </p>
+            <p>
+              <strong>Repetitions:</strong> {entry.reps}
+            </p>
+
+            {/* Display Spaced Repetition Schedule if available */}
+            {entry.schedule && (
+              <div>
+                <p>
+                  <strong>Review Schedule:</strong>
+                </p>
+                <ul>
+                  {entry.schedule.map((date, index) => (
+                    <li key={index}>{`Review ${index + 1}: ${date}`}</li>
+                  ))}
+                </ul>
+              </div>
+            )}
+
             <button onClick={() => editEntry(entry)}>Edit</button>
             <button onClick={() => deleteEntry(entry.id)}>Delete</button>
           </li>
