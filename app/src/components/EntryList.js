@@ -23,20 +23,6 @@ function EntryList({ entries, deleteEntry, editEntry }) {
               <strong>Repetitions:</strong> {entry.reps}
             </p>
 
-            {/* Display Spaced Repetition Schedule if available */}
-            {entry.schedule && (
-              <div>
-                <p>
-                  <strong>Review Schedule:</strong>
-                </p>
-                <ul>
-                  {entry.schedule.map((date, index) => (
-                    <li key={index}>{`Review ${index + 1}: ${date}`}</li>
-                  ))}
-                </ul>
-              </div>
-            )}
-
             <button onClick={() => editEntry(entry)}>Edit</button>
             <button onClick={() => deleteEntry(entry.id)}>Delete</button>
           </li>
