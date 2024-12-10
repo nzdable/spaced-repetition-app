@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 function CreateEntry({ addEntry }) {
   const [topic, setTopic] = useState("");
@@ -9,6 +9,17 @@ function CreateEntry({ addEntry }) {
   const [testTime, setTestTime] = useState("");
   const [reps, setReps] = useState("");
   const [schedule, setSchedule] = useState([]);
+
+  // Set default date and time on component mount
+  useEffect(() => {
+    const now = new Date();
+    const formatDate = (date) => date.toISOString().split("T")[0]; // Format: YYYY-MM-DD
+    const formatTime = (date) =>
+      date.toTimeString().split(":").slice(0, 2).join(":"); // Format: HH:MM
+
+    setActiveRecallDate(formatDate(now));
+    setActiveRecallTime(formatTime(now));
+  }, []);
 
   const calculateSchedule = () => {
     if (!activeRecallDate || !testDate || reps <= 0) return [];
@@ -80,7 +91,7 @@ function CreateEntry({ addEntry }) {
       activeRecallDate: `${activeRecallDate} ${activeRecallTime}`,
       testDate: `${testDate} ${testTime}`,
       reps,
-      schedule: newSchedule, // Include calculated schedule
+      schedule: newSchedule,
     });
     setSchedule(newSchedule); // For display in the form
     // Clear form fields
@@ -153,17 +164,6 @@ function CreateEntry({ addEntry }) {
         <br />
         <button type="submit">Add Entry</button>
       </form>
-
-      {schedule.length > 0 && (
-        <div>
-          <h3>Spaced Repetition Schedule:</h3>
-          <ul>
-            {schedule.map((date, index) => (
-              <li key={index}>{`Review ${index + 1}: ${date}`}</li>
-            ))}
-          </ul>
-        </div>
-      )}
     </div>
   );
 }
